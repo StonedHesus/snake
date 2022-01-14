@@ -1,8 +1,11 @@
 package snake.snake;
 
-public class SnakePart {
+public class SnakePart extends Cell{
     /**
-     *
+     * This here class is an hereditary ancestor of the abstract Cell class and it is used so as to represent and
+     * discern the component of the Snake game object, which is but a chained list when implemented in memory, and
+     * this here class implements and depicts the cellular integration and implementation of each specific instance
+     * that is to be found within the list and that thus defines the mentioned structure.
      *
      * @Author: Andrei-Paul Ionescu
      * @Version: 0.1

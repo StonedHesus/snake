@@ -30,8 +30,6 @@ public class Snake {
          * @Since: 0.1
          */
 
-        // TODO: Verify if there is a potential ( I know there is ) when removing the cell just prior to the head.
-
         if(this.tail.equals(null) || this.tail.equals(this.head))
             return false;
 

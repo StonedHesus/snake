@@ -14,11 +14,36 @@ public class MainMenu extends JFrame{
     // Constructor of the class.
     public MainMenu(){
 
+        // TODO: fix the delay that seem to appear when adding a new element on the current frame, most likely this
+        //       issue has to do with the threads, so look into that.
+
         initialiseTheWindow();
         addExitButton();
+        addMuteButton();
     }
 
     // Methods of the class.
+    private boolean addMuteButton(){
+        /**
+         * Appends a mute button in the top right corner of the frame, in accordance with the current screen size.
+         *
+         * @Author: Andrei-Paul Ionescu
+         * @version: 0.1
+         */
+
+        JButton muteButton = new JButton("M");
+        muteButton.setBounds(1345,
+                30,60, 60); // The value for the position on the X-axis will be adjusted properly
+                                            // with the aid of the current screen size, a possibility which will
+                                            // arrive in future versions.
+
+        muteButton.setFocusable(false);
+
+        this.getContentPane().add(muteButton);
+
+        return true;
+    }
+
     private boolean addExitButton(){
         /**
          * Adds an exit button in the top left corner of the frame, whilst also disabling the standard exit button.
