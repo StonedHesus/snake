@@ -72,6 +72,7 @@ public class Snake {
         return true;
     }
 
+    @Override
     public String toString(){
 
         /**

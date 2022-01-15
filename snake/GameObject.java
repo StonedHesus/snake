@@ -13,5 +13,6 @@ public class GameObject extends Cell{
 
 
     // Methods of the class.
+    @Override
     public String toString() {return "O ";}
 }

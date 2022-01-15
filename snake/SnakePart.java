@@ -24,5 +24,6 @@ public class SnakePart extends Cell{
     public void setNext(SnakePart next) {this.next = next;}
 
     // Methods of the class.
+    @Override
     public String toString() {return "S ";}
 }
