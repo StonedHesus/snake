@@ -4,6 +4,7 @@ import snake.snake.Cell;
 import snake.snake.Empty;
 import snake.snake.SnakePart;
 import snake.snake.GameObject;
+import snake.snake.SnakeHead;
 
 import java.util.Random;
 
@@ -15,7 +16,7 @@ public class Board {
      * of the class, board, which is of the abstract type Cell.
      *
      * @Author: Andrei-Paul Ionescu
-     * @Version: 0.1
+     * @Version: 0.2
      */
 
     // Note to self, based on the resolution at which the game is played, the number of available spaces in the matrix
@@ -45,7 +46,48 @@ public class Board {
 
 
     // Methods of the class.
-    private boolean addGameObject(){
+    public void placeTemporarily(){
+        /**
+         * This here function serves the functionality of the game as follows, it generates a new object within the
+         * boundaries of the game's board, wait for a set duration, and then if the object is still to be found within
+         * the matrix's bounds, meaning that the player has not succeeded on placing the snake's head on that particular
+         * entry of the matrix, then the current object will be removed and a new object shall be randomly placed,
+         * creating thus the loop functionality which is bound to keep the game a-going and the player engaged.
+         *
+         * @Author: Andrei-Paul Ionescu
+         * @Since: 0.2
+         */
+
+        Point point = addGameObject();
+//        int time = 300000000; // To be replaced with the actual time portrayed by the processor.
+//
+//        while(time > 0)
+//            --time;
+
+        try {
+            Thread.sleep(8000); // This implementation won't do, for it will stop all the functionality on the
+                                      // current thread, so I will have to look into accessing different threads
+                                      // so as to complete/run different tasks at the same time.
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        removeGameObject(point);
+    }
+
+    private boolean removeGameObject(Point point){
+        /**
+         *
+         * @Author: Andrei-Paul Ionescu
+         * @Since: 0.2
+         */
+
+        this.board[point.getX()][point.getY()] = new Empty();
+
+        return true;
+    }
+
+    private Point addGameObject(){
         /**
          *
          *
@@ -56,7 +98,7 @@ public class Board {
         Point point = pickARandomValidPosition();
         this.board[point.getX()][point.getY()] = new GameObject();
 
-        return true;
+        return point;
     }
 
     private Point pickARandomValidPosition(){
@@ -112,7 +154,7 @@ public class Board {
         // components of the Snake game object, which serve different functions and thus affect the game in
         // completely different manners.
 
-        this.board[(this.board.length - 1) / 2][(this.board[0].length - 1) / 2] = new SnakePart();
+        this.board[(this.board.length - 1) / 2][(this.board[0].length - 1) / 2] = new SnakeHead();
         return true;
     }
 

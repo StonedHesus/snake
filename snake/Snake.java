@@ -7,7 +7,7 @@ public class Snake {
      * structure.
      *
      * @Autor: Andrei-Paul Ionescu.
-     * @Version: 0.1
+     * @Version: 0.2
      */
 
     // We might have to implement this game object as a Stack structure.
@@ -17,7 +17,7 @@ public class Snake {
     private  SnakePart tail;
 
     // Constructors of the class.
-    public Snake() {this.head = new SnakePart(); this.tail = this.head;}
+    public Snake() {this.head = new SnakeHead(); this.tail = this.head;}
 
     // Methods of the class.
     public boolean removeSnakePart(){
@@ -74,16 +74,48 @@ public class Snake {
 
     @Override
     public String toString(){
-
         /**
-         * This here functions build and returns a String representation of the snake object, taking no arguments upon
-         * invocation, and it does facilitate interpretation by showcasing the head using the capital letter H and the
-         * rest of the snake's body by using the letter S, added to the string using the toString() method of the
-         * SnakePart component.
+         * This here function is the new implementation of the toString() method, which enables the visualisation
+         * of the Snake game object. The function takes no arguments upon invocation, and after the representation,
+         * a feat that is achieved by appending the returned value of the toString() method of each
+         * individual component of the Snake game object, it returns it.
          *
          * @Author: Andrei-Paul Ionescu
-         * @Since: 0.1
+         * @Since: 0.2
          */
+
+
+        String result = "";
+
+        if(this.head.equals(null))
+            return result;
+
+        SnakePart tmp = this.head;
+
+        try {
+            while (!tmp.equals(null)) {
+
+                result += tmp.toString();
+                tmp = tmp.getNext();
+            }
+        } catch(NullPointerException exception){}
+
+        return result;
+    }
+
+    /*
+    @Override
+    public String toString(){
+
+
+//         This here functions build and returns a String representation of the snake object, taking no arguments upon
+//         invocation, and it does facilitate interpretation by showcasing the head using the capital letter H and the
+//         rest of the snake's body by using the letter S, added to the string using the toString() method of the
+//         SnakePart component.
+//
+//         @Author: Andrei-Paul Ionescu
+//         @Since: 0.1
+//
 
         String result = "";
 
@@ -107,4 +139,5 @@ public class Snake {
 
         return result;
     }
+    */
 }
