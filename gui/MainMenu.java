@@ -11,19 +11,59 @@ public class MainMenu extends JFrame{
      * @version: 0.1
      */
 
+    // Attributes of the class.
+    private int width;
+    private int height;
+
     // Constructor of the class.
     public MainMenu(){
 
         // TODO: fix the delay that seem to appear when adding a new element on the current frame, most likely this
         //       issue has to do with the threads, so look into that.
 
+        this.width  = Toolkit.getDefaultToolkit().getScreenSize().width;
+        this.height = Toolkit.getDefaultToolkit().getScreenSize().height;
+
         initialiseTheWindow();
         addExitButton();
         addMuteButton();
+
+        resize();
+
+        while(true){
+
+            resize();
+            repaint();
+        }
     }
 
     // Methods of the class.
-    private boolean addMuteButton(){
+    private boolean resize(){
+
+        // There are three times of resizes which might occur, there is the one which only affects the width, the
+        // one which only affects the height and the one which resizes both, this being achieved by resizing the
+        // diagonal.
+
+        if(Toolkit.getDefaultToolkit().getScreenSize().width < this.width &&
+                Toolkit.getDefaultToolkit().getScreenSize().height == this.height){
+
+            for(Component component : this.getContentPane().getComponents()){
+
+                if(component.getAlignmentX() > Toolkit.getDefaultToolkit().getScreenSize().width){
+
+                    component.setBounds(Toolkit.getDefaultToolkit().getScreenSize().width -
+                                    2 * Math.abs((Toolkit.getDefaultToolkit().getScreenSize().width - this.width)),
+                            component.getBounds().y,
+                            component.getBounds().width,
+                            component.getBounds().height);
+                }
+            }
+        }
+
+        return true;
+    }
+
+    private JButton addMuteButton(){
         /**
          * Appends a mute button in the top right corner of the frame, in accordance with the current screen size.
          *
@@ -41,10 +81,10 @@ public class MainMenu extends JFrame{
 
         this.getContentPane().add(muteButton);
 
-        return true;
+        return muteButton;
     }
 
-    private boolean addExitButton(){
+    private JButton addExitButton(){
         /**
          * Adds an exit button in the top left corner of the frame, whilst also disabling the standard exit button.
          *
@@ -65,7 +105,7 @@ public class MainMenu extends JFrame{
 
         this.getContentPane().add(exitButton);
 
-        return true;
+        return exitButton;
     }
 
     private boolean initialiseTheWindow(){
@@ -77,7 +117,7 @@ public class MainMenu extends JFrame{
          */
 
         setTitle("Snake");
-        setSize(1600, 800);
+        setSize(this.width, this.height);
         setLayout(null);
 
         setVisible(true);
