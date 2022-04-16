@@ -1,0 +1,19 @@
+group 'main.snake'
+version '0.0.1'
+
+apply plugin: 'java'
+
+source compatibility = 1.8
+
+repositories{
+
+    mavenCentral();
+}
+
+jar{
+
+    manifesto{
+
+        attributes 'Main-Class' : 'main.snake.Runner';
+    }
+}
