@@ -3,6 +3,8 @@ package main.snake.gui;
 import javax.swing.*;
 import java.awt.*;
 
+import main.snake.components.GameObjects;
+import main.snake.controller.Controller;
 import main.snake.graphics.Display;
 import main.snake.settings.Settings;
 
@@ -22,7 +24,10 @@ public class GameWindow extends JFrame implements Settings{
     // Constructors of the class.
     public GameWindow(){
 
+
+        new GameObjects();
         this.initialise();
+        new Controller(this.display);
     }
 
     // Private methods of the class.

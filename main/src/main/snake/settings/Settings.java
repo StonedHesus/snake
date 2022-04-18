@@ -18,5 +18,10 @@ public interface Settings {
 
     // Snake settings.
     Color SNAKE_COLOUR = Color.GREEN;
+    final double SNAKE_VELOCITY = 2.5;
+    final int INITIAL_SNAKE_LENGTH = 4;
+    final int INITIAL_SNAKE_POSITION_Y = 300;
+    final int INITIAL_SNAKE_POSITION_X = 300;
+    final int SPART_LENGTH = 32;
 
 }
