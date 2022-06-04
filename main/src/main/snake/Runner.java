@@ -16,9 +16,9 @@ public class Runner {
      * @author Andrei-Paul Ionescu.
      */
 
-    public static void main(){
+    public static void main(String[] args){
         /**
-         * @param none; the method takes no formal parameters.
+         * @param args; an array of string arguments which can be optionally passed to the java class upon execution.
          *
          * This is the main method of the Runner, a method whose sole role is to instantiate a new GameWindow object,
          * achieving this with the aid of the SwingUtilities' ivokeLater method which ensures that the thread upon
