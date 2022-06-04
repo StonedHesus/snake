@@ -3,11 +3,6 @@ package main.snake.components;
 public class GameObjects {
 
     // Attributes of the class.
-    public static Snake snake;
+    public static Snake snake = new Snake();
 
-    // Constructors of the class.
-    public GameObjects(){
-
-        snake = new Snake();
-    }
 }

@@ -14,11 +14,17 @@ public class SPart implements Settings{
      */
 
     // Attributes of the class.
-    private Color colour;
-    private SPart next;
+    private Color colour; // Each Snake part keeps a reference to the colour that is assigned to it.
+    private SPart next; // Since the Snake game object is seen as a single-chained list, each part will
 
     // Constructors of the class.
     public SPart(){
+        /**
+         * @param none; this constructor takes no arguments upon invocation.
+         *
+         * This is the default constructor of the SPart class which instantiates the current object's attribute
+         *
+         */
 
         this.colour = SNAKE_COLOUR;
         this.next   = null;
@@ -31,12 +37,14 @@ public class SPart implements Settings{
     public void setNext(SPart next) {this.next = next;}
 
     // Methods of the class.
-    public void paint(Display display, int xCoordinates, int yCoordinates){
+    public void paint(Graphics graphics, int xCoordinates, int yCoordinates){
 
-        display.getGraphics().setColor(SNAKE_COLOUR);
-        display.getGraphics().drawRect(xCoordinates*SPART_LENGTH, yCoordinates*SPART_LENGTH,
+        assert graphics != null;
+
+        graphics.setColor(SNAKE_COLOUR);
+        graphics.drawRect(xCoordinates*SPART_LENGTH, yCoordinates*SPART_LENGTH,
                 SPART_LENGTH, SPART_LENGTH);
-        display.getGraphics().fillRect(xCoordinates*SPART_LENGTH, yCoordinates*SPART_LENGTH,
+        graphics.fillRect(xCoordinates*SPART_LENGTH, yCoordinates*SPART_LENGTH,
                 SPART_LENGTH, SPART_LENGTH);
     }
     @Override

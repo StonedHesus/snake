@@ -1,5 +1,7 @@
+// The package in which the current Java compilation unit is to be found.
 package main.snake.settings;
 
+// Imports from existing Java libraries, classes and interfaces.
 import java.awt.*;
 
 public interface Settings {
@@ -10,6 +12,9 @@ public interface Settings {
      * @version 0.0.1
      * @author Andrei-Paul Ionescu
      */
+
+    // Game title 
+    final String GAME_TITLE = "Snake";
 
     // Initial screen settings.
     final int INITIAL_SCREEN_WIDTH  = 600;
