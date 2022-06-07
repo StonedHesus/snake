@@ -14,7 +14,7 @@ import main.snake.controller.Controller;
 import main.snake.settings.Settings;
 
 public class Display extends JPanel implements Settings {
-    /**
+    /*
      * This class models the graphical components which are bound to be displayed on the JFrame object GameWindow.
      *
      *
@@ -26,10 +26,12 @@ public class Display extends JPanel implements Settings {
     private int width; // The width of the current JPanel.
     private int height; // The height of the current JPanel.
     private final int blockLength = 30; // The length of a block, a square block which will be drawn on the current JPanel.
+    private double growthFactorX = 1.0; // The growth factor determines by how much we ought to increase the graphics in accordance to the screen size on the x-axis.
+    private double growthFactorY = 1.0; //The growth factor determines by how much we ought to increase the graphics in accordance to the screen size on the y-axis.
 
     // Constructor of the class.
     public Display(){
-        /**
+        /*
         * @param none; this method takes no formal arguments upon invocation.
         * 
         * This here method is the constructor which will be used by the user, for it deals with selecting the desired size of the 
@@ -43,7 +45,7 @@ public class Display extends JPanel implements Settings {
     }
 
     public Display(int width, int height){
-        /**
+        /*
         * @param width; an intenger value which represents the desired width of the current display as specified by the caller.
         * @param height; an integer value which represents the desired height of the current display as specified by the caller.
         *
@@ -61,8 +63,22 @@ public class Display extends JPanel implements Settings {
     }
 
     // Private methods of the class.
+    private void updateGrowthFactor(){
+        /*
+         * @param none; this method takes no formal arguments upon invocation.
+         *
+         * Compute the amount we ought to increase the growth factor by based on the current size of the screen when
+         * compared with the initial/default one.
+         *
+         * @author Andrei-Paul Ionescu.
+         */
+
+        this.growthFactorX += (double) (Toolkit.getDefaultToolkit().getScreenSize().width - this.width) / this.blockLength;
+        this.growthFactorY += (double) (Toolkit.getDefaultToolkit().getScreenSize().height - this.height) / this.blockLength;
+    }
+
     private void drawBackground(Graphics graphics){
-        /**
+        /*
         * @param graphics; a Graphics object which contains the current frame's graphics.
         * 
         * This here method draws the background to the current JPanel's graphics, thus initialising the board. In the case of this 
@@ -78,8 +94,10 @@ public class Display extends JPanel implements Settings {
             for(int j = 0 ; j < this.height/this.blockLength ; ++j){
 
                 graphics.setColor(Color.BLACK); // Set the colour of the board to black which is the default background colour.
-                graphics.drawRect(i*this.blockLength, j*this.blockLength, this.blockLength, this.blockLength); // Draw the margins of the block which we want to draw.
-                graphics.fillRect(i*this.blockLength, j*this.blockLength, this.blockLength, this.blockLength); // Fill the rect so as to achieve a solid black background.
+                graphics.drawRect(i * this.blockLength, j*this.blockLength,
+                        (int) (this.blockLength * this.growthFactorX), (int)(this.blockLength * this.growthFactorY)); // Draw the margins of the block which we want to draw.
+                graphics.fillRect(i * this.blockLength,  j*this.blockLength,
+                        (int) (this.blockLength * this.growthFactorX), (int) (this.blockLength * this.growthFactorY)); // Fill the rect so as to achieve a solid black background.
             }
         }
 
@@ -88,7 +106,7 @@ public class Display extends JPanel implements Settings {
     // Public methods of the class.
     @Override
     public void paintComponent(Graphics graphics){
-        /**
+        /*
         * @param graphics; a Graphics object which contains the current frame's graphics.
         *
         * This method is inherited from the JPanel class and is subsequently invoked every frame by the Controller class; 
@@ -101,6 +119,8 @@ public class Display extends JPanel implements Settings {
 
         super.paintComponent(graphics); // Call the JPanel's paintComponent method and pass to it the current frame's graphics.
         this.drawBackground(graphics); // Call the drawBackground method and pass the current frame's graphics.
+
+        this.updateGrowthFactor(); // Update the growth factor after each Frame so as to ensure that the graphics are properly scaled.
 
         Toolkit.getDefaultToolkit().sync(); // Call the synch method whose role is to ensure a smooth transition from frame to frame.
     }
