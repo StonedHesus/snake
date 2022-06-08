@@ -29,4 +29,9 @@ public interface Settings {
     final int INITIAL_SNAKE_POSITION_X = 300;
     final int SPART_LENGTH = 32;
 
+    // MainMenu settings.
+    final int NUMBER_OF_BUTTON = 3;
+    final int INITIAL_BUTTON_WIDTH = 250;
+    final int INITIAL_BUTTON_HEIGHT = 100;
+
 }

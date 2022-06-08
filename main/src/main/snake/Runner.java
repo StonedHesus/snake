@@ -5,7 +5,9 @@ package main.snake;
 import javax.swing.*;
 
 // Imports from custom libraries, classes and interfaces.
+import com.sun.tools.javac.Main;
 import main.snake.gui.GameWindow;
+import main.snake.gui.MainMenu;
 
 public class Runner {
     /**
@@ -27,6 +29,6 @@ public class Runner {
          * @author Andrei-Paul Ionescu
          */
 
-        SwingUtilities.invokeLater(GameWindow::new);
+        SwingUtilities.invokeLater(MainMenu::new);
     }
 }
