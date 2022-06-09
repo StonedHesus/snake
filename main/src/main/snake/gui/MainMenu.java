@@ -43,9 +43,93 @@ public class MainMenu extends View implements Settings{
     }
 
     // Private/helper methods of the class.
+    private void createTheSettingsMenu(){
+        /*
+         * @param none; this here method takes no formal arguments upon invocation.
+         *
+         * This method is responsible for creating a new JPanel object which contains the settings menu options,
+         * those include the ability to alter the volume, mute entirely the sound, toy with the brightness, etcetera.
+         * The method deals with the creation and the formatting of the view but does not ensure the liberation/removal
+         * of any existing JPanel, thus the caller is supposed to prepare the environment before invoking this procedure.
+         *
+         * @author Andrei-Paul Ionescu.
+         */
+
+        // Create a new JPanel on which we will display the new options.
+        JPanel settingsPanel = new JPanel();
+
+        // Set the layout manager of the panel object.
+        settingsPanel.setLayout(new GridBagLayout());
+
+        // Create and instantiate a new JSlider which is used to control the volume of the sound of the program.
+        JSlider slider = new JSlider(MINIMUM_VOLUME, MAXIMUM_VOLUME, INITIAL_VOLUME);
+
+        // Set the orientation of the slider object to horizontal.
+        slider.setOrientation(SwingConstants.HORIZONTAL);
+
+        // Paint the ticks of the slider.
+        slider.setPaintTicks(true);
+
+        // Set the spacing for the ticks.
+        slider.setMajorTickSpacing(50);
+
+        // Paint a label for the current slider object.
+        slider.setPaintLabels(true);
+
+        // Set the text for the label.
+        // TODO: properly link the label and the slider so as to show the percentage of the current selection.
+        // Make the slider visible.
+        slider.setVisible(true);
+
+        // Add the slider object to the current panel.
+        settingsPanel.add(slider);
+
+        // Create and instantiate the PREVIOUS button.
+        JButton button = new JButton("PREVIOUS");
+
+        // Create a new ActionListener and instantiate it using the nested class JButtonActionListener.
+        ActionListener listener = new JButtonActionListener(button){
+
+            @Override
+            public void actionPerformed(ActionEvent event){
+                /*
+                 * @param event; an ActionEvent object.
+                 *
+                 * If the user clicks upon this button it will cause the current panel to be disposed and a new
+                 * main menu one to be instantiated thus reverting to the state in which the view was prior to the
+                 * user accessing the settings menu.
+                 *
+                 * @author Andrei-Paul Ionescu.
+                 */
+
+                // Remove the current JPanel object.
+                MainMenu.this.remove(settingsPanel);
+
+                // Add the initial JPanel object to the frame, this is done by calling the method addButtons().
+                MainMenu.this.addButtons();
+
+                // Ensure a flawless transition by invoking the revalidate and repaint method on the current frame.
+                MainMenu.this.revalidate(); // Revalidate the current frame.
+                MainMenu.this.repaint(); // Repaint the current frame.
+            }
+        };
+
+        // Link the ActionListener with the JButton object.
+        button.addActionListener(listener);
+
+        // Make the button visible.
+        button.setVisible(true);
+
+        // Add the current button to the JPanel object.
+        settingsPanel.add(button);
+
+        // Add the new JPanel object to the current frame.
+        MainMenu.this.add(settingsPanel);
+    }
+
     private void addButtons(){
         /*
-         * @param none; this here methods takes no arguments upon invocation.
+         * @param none; this here method takes no arguments upon invocation.
          *
          * This here function achieves one thing, it adds to the centre of the current view the
          * buttons which the app requires, at this point in time those buttons are PLAY, OPTIONS and EXIT,
@@ -116,6 +200,14 @@ public class MainMenu extends View implements Settings{
                  *
                  * @author Andrei-Paul Ionescu.
                  */
+
+
+
+                MainMenu.this.remove(buttonsPanel); // Remove the buttonsPanel JPanel object from the current frame.
+
+                MainMenu.this.createTheSettingsMenu(); // Invoke the method which deals with the creation of the settings menu.
+                MainMenu.this.revalidate(); // Revalidate the current frame.
+                MainMenu.this.repaint(); // Repaint the current frame.
             }
         };
 

@@ -34,4 +34,9 @@ public interface Settings {
     final int INITIAL_BUTTON_WIDTH = 250;
     final int INITIAL_BUTTON_HEIGHT = 100;
 
+    // Settings menu setting/preferences.
+    final int INITIAL_VOLUME = 85;
+    final int MINIMUM_VOLUME = 0;
+    final int MAXIMUM_VOLUME = 100;
+
 }
