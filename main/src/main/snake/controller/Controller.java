@@ -12,7 +12,7 @@ import java.awt.event.*;
 import main.snake.graphics.Display;
 import main.snake.components.GameObjects;
 
-public record Controller(Display display) implements ActionListener, KeyListener{
+public class Controller implements ActionListener, KeyListener{
     /**
     * *param display; a Display object who serves the View role for the current application/game.
     *
@@ -26,26 +26,19 @@ public record Controller(Display display) implements ActionListener, KeyListener
     */
 
     // Constructor of the class.
-    public Controller(Display display) {
-        /**
+    public Controller() {
+        /*
         * @param display; a Display object which represents the current View of the application.
         *
         * This is the main constructor of the Controller class whose role is to properly set up the class' field and to initialise 
         * a timer whose role is ... 
         */
-
-        // TODO: Ascertain the role of the timer in this here class.
-        this.display = display;
-
-        int delay = 15;
-        Timer timer = new Timer(delay, this);
-        timer.start();
     }
 
     // Methods of the class.
     @Override
     public void keyTyped(KeyEvent event) {
-        /**
+        /*
         * @param event; a KeyEvent object which represents an object intercepted after the user interacted with the program with the aid of its keyboard.
         *
         * This here method is inherited from KeyListener class and it is subsequently invoked every frame/milisecond and its 
@@ -58,7 +51,7 @@ public record Controller(Display display) implements ActionListener, KeyListener
 
     @Override
     public void keyPressed(KeyEvent event) {
-        /**
+        /*
         * @param event; a KeyEvent object which represents an object intercepted after the user interacted with the program with the aid of its keyboard.
         *
         * This here method is inherited from the KeyListener class and it is subsequently invoked every frame/milisecond and its 
@@ -76,7 +69,7 @@ public record Controller(Display display) implements ActionListener, KeyListener
 
     @Override
     public void keyReleased(KeyEvent event) {
-        /**
+        /*
         * @param event; a KeyEvent object which represents an object intercepted after the user interacted with the program with the aid of its keyboard.
         *
         * This here method is inherited from the KeyListener class and it is subsequently invoked every frame/milisecond and its role is
@@ -94,7 +87,7 @@ public record Controller(Display display) implements ActionListener, KeyListener
 
     @Override
     public void actionPerformed(ActionEvent event) {
-        /**
+        /*
         * @param event; an ActionEvent object which indicates whether or not an internal action took place or not.
         *
         * This here method is inherited from the ActionListner class and it is subsequently invoked every frame/milisecond and its role is 
@@ -105,14 +98,14 @@ public record Controller(Display display) implements ActionListener, KeyListener
         */
 
         // Paint the current state of the snake game object.
-        GameObjects.snake.paint(this.display.getGraphics());
-
-
-        this.display.getGraphics().setColor(Color.white);
-        this.display.getGraphics().drawRect(0, 0, 32, 32);
-
-        // Revalidate the View and repaint it so as to keep it updated.
-        display.revalidate();
-        display.repaint();
+//        GameObjects.snake.paint(this.display.getGraphics());
+//
+//
+//        this.display.getGraphics().setColor(Color.white);
+//        this.display.getGraphics().drawRect(0, 0, 32, 32);
+//
+//        // Revalidate the View and repaint it so as to keep it updated.
+//        display.revalidate();
+//        display.repaint();
     }
 }

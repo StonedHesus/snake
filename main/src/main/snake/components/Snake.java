@@ -83,7 +83,6 @@ public class Snake implements Settings {
 
         if(keyEvent.getKeyCode() == KeyEvent.VK_W){
 
-            System.out.println("It works");
             this.yMovement += SNAKE_VELOCITY;
         }
         if(keyEvent.getKeyCode() == KeyEvent.VK_D){

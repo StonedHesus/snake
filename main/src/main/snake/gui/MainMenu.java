@@ -10,8 +10,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
-public class MainMenu extends View implements Settings{
+public class MainMenu extends View implements Settings {
     /*
      *  This here class models the main menu view of the application, this is the initial view with which
      *  the user is presented upon launching the application and its role is to allow the user to easily

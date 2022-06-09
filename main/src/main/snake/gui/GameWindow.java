@@ -53,8 +53,9 @@ public class GameWindow extends View implements Settings{
         // initial screen dimensions which are stored within constants in the Settings interface.
         this.display = new Display(INITIAL_SCREEN_WIDTH, INITIAL_SCREEN_HEIGHT);
 
-        // Instantiate a new Controller which is linked with the current view/JFrame.
-        new Controller(this.display);
+        // Instantiate a new Controller which is linked with the current view/JFrame; the linking is done with the aid
+        // of the frame's addKeyListener method which sets the frame's current KeyListener to our controller.
+        this.addKeyListener(new Controller());
         
         // Set the dimensions of the JFrame to the initial ones which are stored within the Settings interface.
         this.setSize(new Dimension(INITIAL_SCREEN_WIDTH, INITIAL_SCREEN_HEIGHT));
