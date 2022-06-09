@@ -56,8 +56,14 @@ public class MainMenu extends View implements Settings{
          * @author Andrei-Paul Ionescu.
          */
 
-        // Create and instantiate the play button.
-        JButton button = new JButton("Play");
+        // Create a new JPanel upon which we will collate our buttons.
+        JPanel buttonsPanel = new JPanel();
+
+        // Set the layout manager of the panel object.
+        buttonsPanel.setLayout(new GridBagLayout());
+
+        // Create and instantiate the PLAY button.
+        JButton button = new JButton("PLAY");
 
         // Create a new ActionListener and instantiate it using the nested class JButtonActionListener.
         ActionListener listener = new JButtonActionListener(button){
@@ -83,14 +89,82 @@ public class MainMenu extends View implements Settings{
         button.addActionListener(listener);
 
         // Size the button in accordance with the current size.
-        button.setPreferredSize(new Dimension(INITIAL_BUTTON_WIDTH, INITIAL_SCREEN_HEIGHT));
+        //button.setPreferredSize(new Dimension(INITIAL_BUTTON_WIDTH, INITIAL_SCREEN_HEIGHT));
 
         // Make the button visible.
         button.setVisible(true);
 
-        // Add the current button to the frame.
-        this.add(button);
+        // Add the current button to the JPanel.
+        buttonsPanel.add(button);
 
+        // Create and instantiate the SETTINGS button.
+        button = new JButton("SETTINGS");
+
+        // Create a new ActionListener and instantiate it using the nested class JButtonActionListener.
+        listener = new JButtonActionListener(button){
+
+            @Override
+            public void actionPerformed(ActionEvent event){
+                /*
+                 * @param event; an ActionEvent object.
+                 *
+                 * If the user clicks on this particular object then this will trigger a chain of events which will
+                 * mutate the aspect of the current view by switching the JPanel from the one which serves as the
+                 * main menu view to the one which serves as the option menu in which different buttons and sliders
+                 * are present so as to allow the user to manipulate various game settings, such as sound, brightness,
+                 * etcetera.
+                 *
+                 * @author Andrei-Paul Ionescu.
+                 */
+            }
+        };
+
+        // Link the ActionListener with the JButton object.
+        button.addActionListener(listener);
+
+        // Make the button visible.
+        button.setVisible(true);
+
+        // Add the current button to the JPanel.
+        buttonsPanel.add(button);
+
+        // Create and instantiate the EXIT button.
+        button = new JButton("EXIT");
+
+        // Create a new ActionListener and instantiate it using the nested class JButtonActionListener.
+        listener = new JButtonActionListener(button){
+
+            @Override
+            public void actionPerformed(ActionEvent event){
+                /*
+                 * @param event; an ActionEvent object.
+                 *
+                 * If the user click on this particular button then it will trigger the termination of the lifespan
+                 * of the program, much alike with what happens when the user presses down the combo command + e.
+                 * The response to this event is broken down in the following stages, first the current frame is
+                 * made invisible then the various objects which are utilised are liberated and then finally the whole
+                 * program is shutdown with the aid of the System unit.
+                 *
+                 * @author Andrei-Paul Ionescu.
+                 */
+
+                MainMenu.this.setVisible(false); // Make the current invisible so as to make the transition smoother.
+                MainMenu.this.dispose(); // Get rid of the current frame by freeing the processes which are link to its existence.
+                System.exit(0); // Exit the program with the status 0.
+            }
+        };
+
+        // Link the ActionListener with the JButton object.
+        button.addActionListener(listener);
+
+        // Make the button visible.
+        button.setVisible(true);
+
+        // Add the current button to the JPanel.
+        buttonsPanel.add(button);
+
+        // Add the JPanel to the current frame.
+        this.add(buttonsPanel);
     }
 
     private void initialise(){

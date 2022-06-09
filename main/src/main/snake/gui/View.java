@@ -108,7 +108,9 @@ public abstract class View extends JFrame implements Settings{
                  *
                  * @author Andrei-Paul Ionescu.
                  */
-                System.exit(0);
+                View.this.setVisible(false); // Make the current invisible so as to make the transition smoother.
+                View.this.dispose(); // Get rid of the current frame by freeing the processes which are link to its existence.
+                System.exit(0); // Exit the program with the status 0.
             }
         };
 
