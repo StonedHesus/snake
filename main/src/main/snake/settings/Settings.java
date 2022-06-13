@@ -33,6 +33,8 @@ public interface Settings {
     final int NUMBER_OF_BUTTON = 3;
     final int INITIAL_BUTTON_WIDTH = 250;
     final int INITIAL_BUTTON_HEIGHT = 100;
+    final Color DARK_THEME_BUTTON_BACKGROUND = Color.BLACK;
+    final Color DARK_THEME_BUTTON_FOREGROUND = Color.GREEN;
 
     // Settings menu setting/preferences.
     final int INITIAL_VOLUME = 85;

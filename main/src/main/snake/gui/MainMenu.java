@@ -2,7 +2,6 @@
 package main.snake.gui;
 
 // Imports from custom libraries, classes and interfaces.
-import com.sun.tools.javac.Main;
 import main.snake.settings.Settings;
 
 // Imports from existing Java libraries, classes and interfaces.
@@ -146,7 +145,7 @@ public class MainMenu extends View implements Settings {
         JPanel buttonsPanel = new JPanel();
 
         // Set the layout manager of the panel object.
-        buttonsPanel.setLayout(new GridBagLayout());
+        buttonsPanel.setLayout(new FlowLayout());
 
         // Create and instantiate the PLAY button.
         JButton button = new JButton("PLAY");
@@ -174,8 +173,17 @@ public class MainMenu extends View implements Settings {
         // Link the ActionListener with the JButton object.
         button.addActionListener(listener);
 
-        // Size the button in accordance with the current size.
-        //button.setPreferredSize(new Dimension(INITIAL_BUTTON_WIDTH, INITIAL_SCREEN_HEIGHT));
+        // Size the button in accordance with the initial size which is specified in the Settings' interface.
+        button.setPreferredSize(new Dimension(INITIAL_BUTTON_WIDTH, INITIAL_BUTTON_HEIGHT));
+        button.revalidate();
+
+        button.setOpaque(true);
+        button.setBackground(DARK_THEME_BUTTON_BACKGROUND);
+        button.setForeground(DARK_THEME_BUTTON_FOREGROUND);
+        button.setUI(new CustomButtonUI(button));
+        button.repaint();
+        button.revalidate();
+
 
         // Make the button visible.
         button.setVisible(true);
@@ -216,6 +224,10 @@ public class MainMenu extends View implements Settings {
         // Link the ActionListener with the JButton object.
         button.addActionListener(listener);
 
+        // Size the button in accordance with the initial size which is specified in the Settings' interface.
+        button.setPreferredSize(new Dimension(INITIAL_BUTTON_WIDTH, INITIAL_BUTTON_HEIGHT));
+        button.revalidate();
+
         // Make the button visible.
         button.setVisible(true);
 
@@ -250,6 +262,10 @@ public class MainMenu extends View implements Settings {
 
         // Link the ActionListener with the JButton object.
         button.addActionListener(listener);
+
+        // Size the button in accordance with the initial size which is specified in the Settings' interface.
+        button.setPreferredSize(new Dimension(INITIAL_BUTTON_WIDTH, INITIAL_BUTTON_HEIGHT));
+        button.revalidate();
 
         // Make the button visible.
         button.setVisible(true);

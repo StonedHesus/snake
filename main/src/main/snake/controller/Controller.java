@@ -25,14 +25,20 @@ public class Controller implements ActionListener, KeyListener{
     * @author Andrei-Paul Ionescu.
     */
 
+    // Attributes of the class.
+    private Display currentView;
+
     // Constructor of the class.
-    public Controller() {
+    public Controller(Display currentView) {
         /*
         * @param display; a Display object which represents the current View of the application.
         *
         * This is the main constructor of the Controller class whose role is to properly set up the class' field and to initialise 
         * a timer whose role is ... 
         */
+
+        // Link the argument of the constructor with the variable attribute of the class.
+        this.currentView = currentView;
     }
 
     // Methods of the class.
@@ -90,22 +96,22 @@ public class Controller implements ActionListener, KeyListener{
         /*
         * @param event; an ActionEvent object which indicates whether or not an internal action took place or not.
         *
-        * This here method is inherited from the ActionListner class and it is subsequently invoked every frame/milisecond and its role is 
-        * to intercept internal events which are broadcasted by Swing/ AWT components or from within the architecture of the current game.
+        * This here method is inherited from the ActionListener class, and it is subsequently invoked every frame/millisecond and its role is
+        * to intercept internal events which are broadcast by Swing/ AWT components or from within the architecture of the current game.
         * The method responds to such events by repainting the snake game object after an internal event was triggered and by 
         * revalidating and repainting the current display a feat which will trigger the paintComponent function which is found 
         * within the Display class.
         */
 
         // Paint the current state of the snake game object.
-//        GameObjects.snake.paint(this.display.getGraphics());
-//
-//
-//        this.display.getGraphics().setColor(Color.white);
-//        this.display.getGraphics().drawRect(0, 0, 32, 32);
-//
-//        // Revalidate the View and repaint it so as to keep it updated.
-//        display.revalidate();
-//        display.repaint();
+        GameObjects.snake.paint(this.currentView.getGraphics());
+
+
+        this.currentView.getGraphics().setColor(Color.white);
+        this.currentView.getGraphics().drawRect(0, 0, 32, 32);
+
+        // Revalidate the View and repaint it so as to keep it updated.
+        currentView.revalidate();
+        currentView.repaint();
     }
 }
