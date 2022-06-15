@@ -9,8 +9,7 @@ import javax.swing.*;
 import javax.swing.plaf.BorderUIResource;
 import javax.swing.plaf.ButtonUI;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 import java.util.Set;
 
 public class CustomButtonUI extends ButtonUI implements Settings, ActionListener {

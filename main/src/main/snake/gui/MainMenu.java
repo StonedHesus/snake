@@ -6,6 +6,9 @@ import main.snake.settings.Settings;
 
 // Imports from existing Java libraries, classes and interfaces.
 import javax.swing.*;
+import javax.swing.border.LineBorder;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -60,7 +63,7 @@ public class MainMenu extends View implements Settings {
         JPanel settingsPanel = new JPanel();
 
         // Set the layout manager of the panel object.
-        settingsPanel.setLayout(new GridBagLayout());
+        settingsPanel.setLayout(new GridLayout(10, 1, 10, 5));
 
         // Create and instantiate a new JSlider which is used to control the volume of the sound of the program.
         JSlider slider = new JSlider(MINIMUM_VOLUME, MAXIMUM_VOLUME, INITIAL_VOLUME);
@@ -77,8 +80,32 @@ public class MainMenu extends View implements Settings {
         // Paint a label for the current slider object.
         slider.setPaintLabels(true);
 
-        // Set the text for the label.
-        // TODO: properly link the label and the slider so as to show the percentage of the current selection.
+        // Instantiate a new label object and pass to it the initial label value.
+        JLabel label = new JLabel(slider.getValue() + "%", SwingConstants.CENTER);
+
+        // Add the label object to the current JPanel object.
+        settingsPanel.add(label);
+
+        // Add the ChangeListener whose role is to intercept any events which alter the value of the slide and thus
+        // update the displayed value in accordance with the user's interaction.
+        slider.addChangeListener(new ChangeListener() {
+
+            @Override
+            public void stateChanged(ChangeEvent event) {
+                /*
+                 * @param event; a ChangeEvent object.
+                 *
+                 * Intercept any events which alter the current value of the slider and respond to them by updating
+                 * the value displayed on the label which is associated with the slider with which this event listener
+                 * is linked.
+                 *
+                 * @author Andrei-Paul Ionescu.
+                 */
+
+                label.setText(slider.getValue() + "%");
+            }
+        });
+
         // Make the slider visible.
         slider.setVisible(true);
 
@@ -145,7 +172,7 @@ public class MainMenu extends View implements Settings {
         JPanel buttonsPanel = new JPanel();
 
         // Set the layout manager of the panel object.
-        buttonsPanel.setLayout(new FlowLayout());
+        buttonsPanel.setLayout(new GridLayout(10, 1, 10, 5));
 
         // Create and instantiate the PLAY button.
         JButton button = new JButton("PLAY");
@@ -175,15 +202,6 @@ public class MainMenu extends View implements Settings {
 
         // Size the button in accordance with the initial size which is specified in the Settings' interface.
         button.setPreferredSize(new Dimension(INITIAL_BUTTON_WIDTH, INITIAL_BUTTON_HEIGHT));
-        button.revalidate();
-
-        button.setOpaque(true);
-        button.setBackground(DARK_THEME_BUTTON_BACKGROUND);
-        button.setForeground(DARK_THEME_BUTTON_FOREGROUND);
-        button.setUI(new CustomButtonUI(button));
-        button.repaint();
-        button.revalidate();
-
 
         // Make the button visible.
         button.setVisible(true);
