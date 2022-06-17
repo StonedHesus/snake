@@ -174,6 +174,9 @@ public class MainMenu extends View implements Settings {
         // Set the layout manager of the panel object.
         buttonsPanel.setLayout(new GridLayout(10, 1, 10, 5));
 
+        // Add the title of the game on the main menu screen.
+        buttonsPanel.add(new JLabel(GAME_TITLE, SwingConstants.CENTER));
+
         // Create and instantiate the PLAY button.
         JButton button = new JButton("PLAY");
 
@@ -306,6 +309,9 @@ public class MainMenu extends View implements Settings {
          *
          * @author Andrei-Paul Ionescu.
          */
+
+        // Set the layout of the current frame.
+        this.setLayout(new GridBagLayout());
 
         // Call the method which creates and properly displays the buttons of the menu.
         this.addButtons();

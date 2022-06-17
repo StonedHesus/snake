@@ -98,13 +98,12 @@ public class Snake implements Settings {
             this.xMovement -= SNAKE_VELOCITY;
         }
     }
-    public void paint(Graphics graphics){
+    public void paint(Graphics2D graphics){
 
         assert graphics != null;
 
 
         SPart pointer = this.head;
-
 
         int offset = 0;
 

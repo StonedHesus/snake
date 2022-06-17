@@ -37,7 +37,7 @@ public class SPart implements Settings{
     public void setNext(SPart next) {this.next = next;}
 
     // Methods of the class.
-    public void paint(Graphics graphics, int xCoordinates, int yCoordinates){
+    public void paint(Graphics2D graphics, int xCoordinates, int yCoordinates){
 
         assert graphics != null;
 

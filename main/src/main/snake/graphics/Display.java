@@ -117,12 +117,16 @@ public class Display extends JPanel implements Settings {
         * @author Andrei-Paul Ionescu.
         */
 
+
+
         super.paintComponent(graphics); // Call the JPanel's paintComponent method and pass to it the current frame's graphics.
         this.drawBackground(graphics); // Call the drawBackground method and pass the current frame's graphics.
 
+        GameObjects.snake.paint((Graphics2D) graphics);
+
         this.updateGrowthFactor(); // Update the growth factor after each Frame so as to ensure that the graphics are properly scaled.
 
-        Toolkit.getDefaultToolkit().sync(); // Call the synch method whose role is to ensure a smooth transition from frame to frame.
+        Toolkit.getDefaultToolkit().sync(); // Call the sync method whose role is to ensure a smooth transition from frame to frame.
     }
 
 }

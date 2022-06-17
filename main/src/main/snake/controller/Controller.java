@@ -104,7 +104,7 @@ public class Controller implements ActionListener, KeyListener{
         */
 
         // Paint the current state of the snake game object.
-        GameObjects.snake.paint(this.currentView.getGraphics());
+        GameObjects.snake.paint((Graphics2D)this.currentView.getGraphics());
 
 
         this.currentView.getGraphics().setColor(Color.white);
