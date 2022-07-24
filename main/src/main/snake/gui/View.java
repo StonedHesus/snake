@@ -13,6 +13,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
+import java.io.File;
+import java.io.IOException;
 
 public abstract class View extends JFrame implements Settings{
     /**
@@ -29,6 +31,8 @@ public abstract class View extends JFrame implements Settings{
     private boolean wasPreviouslyInFullScreenMode = false; // A flag which tells us whether the view was previously in fullscreen or not.
     private Dimension dimensionsPriorToFullScreenMode; // A Dimension object whose role is to retain the size of the View prior to maximising it to fullscreen.
 
+    public Font customFont;
+
     // Constructors of the class.
     public View(){
         /*
@@ -43,6 +47,8 @@ public abstract class View extends JFrame implements Settings{
          * @author Andrei-Paul Ionescu
          */
 
+        // Call the helper method which loads the custom font to the view.
+        //this.loadCustomFont();
         // Call the helper method which deals with the initialisation of the current view.
         this.initialise();
 
@@ -51,6 +57,22 @@ public abstract class View extends JFrame implements Settings{
     }
 
     // Private methods of the class.
+    private void loadCustomFont(){
+        /**
+         *
+         *
+         * @author Andrei-Paul Ionescu
+         */
+        try{
+
+            this.customFont = Font.createFont(Font.TRUETYPE_FONT, new File(ClassLoader.getSystemResource("ARCADECLASSIC.TTF").getPath())).deriveFont(50f);
+            GraphicsEnvironment.getLocalGraphicsEnvironment().registerFont(this.customFont);
+        } catch (IOException | FontFormatException ignored){
+
+            System.out.println("An error occurred.");
+        }
+    }
+
     private void addOptions(){
         /*
          * @param none; this function takes no formal arguments upon invocation.

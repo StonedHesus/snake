@@ -65,6 +65,9 @@ public class MainMenu extends View implements Settings {
         // Set the layout manager of the panel object.
         settingsPanel.setLayout(new GridLayout(10, 1, 10, 5));
 
+        // Add a bottom margin with the aid of the Box class.
+        settingsPanel.add(Box.createHorizontalStrut(MARGIN_TOP));
+
         // Create and instantiate a new JSlider which is used to control the volume of the sound of the program.
         JSlider slider = new JSlider(MINIMUM_VOLUME, MAXIMUM_VOLUME, INITIAL_VOLUME);
 
@@ -82,6 +85,7 @@ public class MainMenu extends View implements Settings {
 
         // Instantiate a new label object and pass to it the initial label value.
         JLabel label = new JLabel(slider.getValue() + "%", SwingConstants.CENTER);
+        label.setForeground(DARK_THEME_BUTTON_FOREGROUND);
 
         // Add the label object to the current JPanel object.
         settingsPanel.add(label);
@@ -109,11 +113,17 @@ public class MainMenu extends View implements Settings {
         // Make the slider visible.
         slider.setVisible(true);
 
+        // Set the foreground of the slider object.
+        slider.setForeground(DARK_THEME_BUTTON_FOREGROUND);
+
         // Add the slider object to the current panel.
         settingsPanel.add(slider);
 
+        // Add a bottom margin with the aid of the Box class.
+        settingsPanel.add(Box.createHorizontalStrut(MARGIN_BOTTOM));
+
         // Create and instantiate the PREVIOUS button.
-        JButton button = new JButton("PREVIOUS");
+        JButton button = new CustomButton("PREVIOUS");
 
         // Create a new ActionListener and instantiate it using the nested class JButtonActionListener.
         ActionListener listener = new JButtonActionListener(button){
@@ -151,6 +161,9 @@ public class MainMenu extends View implements Settings {
         // Add the current button to the JPanel object.
         settingsPanel.add(button);
 
+        // Set the background colour of the JPanel object to the background colour which is specified in the Settings interface.
+        settingsPanel.setBackground(BACKGROUND_COLOUR);
+
         // Add the new JPanel object to the current frame.
         MainMenu.this.add(settingsPanel);
     }
@@ -175,10 +188,16 @@ public class MainMenu extends View implements Settings {
         buttonsPanel.setLayout(new GridLayout(10, 1, 10, 5));
 
         // Add the title of the game on the main menu screen.
-        buttonsPanel.add(new JLabel(GAME_TITLE, SwingConstants.CENTER));
+        JLabel title = new JLabel(GAME_TITLE, SwingConstants.CENTER);
+        title.setForeground(DARK_THEME_BUTTON_FOREGROUND); // Set the foreground of the component to the one specified in the Settings interface.
+        title.setFont(this.customFont);
+        buttonsPanel.add(title);
+
+        // Add a bottom margin with the aid of the Box class.
+        buttonsPanel.add(Box.createHorizontalStrut(MARGIN_BOTTOM));
 
         // Create and instantiate the PLAY button.
-        JButton button = new JButton("PLAY");
+        JButton button = new CustomButton("PLAY");
 
         // Create a new ActionListener and instantiate it using the nested class JButtonActionListener.
         ActionListener listener = new JButtonActionListener(button){
@@ -212,8 +231,11 @@ public class MainMenu extends View implements Settings {
         // Add the current button to the JPanel.
         buttonsPanel.add(button);
 
+        // Add a bottom margin with the aid of the Box class.
+        buttonsPanel.add(Box.createHorizontalStrut(MARGIN_BOTTOM));
+
         // Create and instantiate the SETTINGS button.
-        button = new JButton("SETTINGS");
+        button = new CustomButton("SETTINGS");
 
         // Create a new ActionListener and instantiate it using the nested class JButtonActionListener.
         listener = new JButtonActionListener(button){
@@ -255,8 +277,11 @@ public class MainMenu extends View implements Settings {
         // Add the current button to the JPanel.
         buttonsPanel.add(button);
 
+        // Add a bottom margin with the aid of the Box class.
+        buttonsPanel.add(Box.createHorizontalStrut(MARGIN_BOTTOM));
+
         // Create and instantiate the EXIT button.
-        button = new JButton("EXIT");
+        button = new CustomButton("EXIT");
 
         // Create a new ActionListener and instantiate it using the nested class JButtonActionListener.
         listener = new JButtonActionListener(button){
@@ -294,6 +319,12 @@ public class MainMenu extends View implements Settings {
         // Add the current button to the JPanel.
         buttonsPanel.add(button);
 
+        // Add a bottom margin with the aid of the Box class.
+        buttonsPanel.add(Box.createHorizontalStrut(MARGIN_BOTTOM));
+
+        // Change the background colour of the JPanel before collating it to the current frame.
+        buttonsPanel.setBackground(BACKGROUND_COLOUR);
+
         // Add the JPanel to the current frame.
         this.add(buttonsPanel);
     }
@@ -315,6 +346,9 @@ public class MainMenu extends View implements Settings {
 
         // Call the method which creates and properly displays the buttons of the menu.
         this.addButtons();
+
+        // Change the background colour of the current frame so that it conforms to the colour theme of the project.
+        this.getContentPane().setBackground(BACKGROUND_COLOUR);
     }
 
     // Nested class.
