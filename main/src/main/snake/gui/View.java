@@ -15,6 +15,8 @@ import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.util.Objects;
 
 public abstract class View extends JFrame implements Settings{
     /**
@@ -31,7 +33,7 @@ public abstract class View extends JFrame implements Settings{
     private boolean wasPreviouslyInFullScreenMode = false; // A flag which tells us whether the view was previously in fullscreen or not.
     private Dimension dimensionsPriorToFullScreenMode; // A Dimension object whose role is to retain the size of the View prior to maximising it to fullscreen.
 
-    public Font customFont;
+    public Font customFont = null;
 
     // Constructors of the class.
     public View(){
@@ -48,7 +50,8 @@ public abstract class View extends JFrame implements Settings{
          */
 
         // Call the helper method which loads the custom font to the view.
-        //this.loadCustomFont();
+        this.loadCustomFont();
+
         // Call the helper method which deals with the initialisation of the current view.
         this.initialise();
 
@@ -59,18 +62,34 @@ public abstract class View extends JFrame implements Settings{
     // Private methods of the class.
     private void loadCustomFont(){
         /**
+         * @param none; this here method takes no formal arguments upon invocation.,
          *
+         * Attempt to read the TTF file containing the custom font which we want to utilise for the scope of this
+         * project. The file resides in the static folder, if the routine fails to load the font then the reference
+         * to the customFont object will be null, thus indicating to the program that the standard font for the current
+         * machine ought to be utilised instead of the custom font.
          *
          * @author Andrei-Paul Ionescu
          */
+
+        // Instantiate a new InputStream object so as to hold the contents of the .TTF file.
+        InputStream inputStream;
+
+        // Retreive the contents of the .TTF file.
+        inputStream = View.class.getResourceAsStream("./../static/ARCADECLASSIC.TTF");
+
+        // Try to initialise the Font object with the aid of createFont static method of the class Font.
         try{
+            this.customFont = (inputStream != null) ? Font.createFont(Font.TRUETYPE_FONT, inputStream) : null;
+            this.customFont = this.customFont.deriveFont(40.0f);
+        } catch (FontFormatException | IOException exception){
+            // Respond to the errors which might be triggered whilst attempting to perfrom this task.
 
-            this.customFont = Font.createFont(Font.TRUETYPE_FONT, new File(ClassLoader.getSystemResource("ARCADECLASSIC.TTF").getPath())).deriveFont(50f);
-            GraphicsEnvironment.getLocalGraphicsEnvironment().registerFont(this.customFont);
-        } catch (IOException | FontFormatException ignored){
-
-            System.out.println("An error occurred.");
+            System.out.println("[!] There was an error whilst loading the custom font.");
         }
+
+        // Set the font of the global project environment.
+        GraphicsEnvironment.getLocalGraphicsEnvironment().registerFont(this.customFont);
     }
 
     private void addOptions(){

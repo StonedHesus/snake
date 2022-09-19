@@ -14,39 +14,32 @@ public class SPart implements Settings{
      */
 
     // Attributes of the class.
-    private Color colour; // Each Snake part keeps a reference to the colour that is assigned to it.
-    private SPart next; // Since the Snake game object is seen as a single-chained list, each part will
+    private final Color colour; // Each Snake part keeps a reference to the colour that is assigned to it.
+    private Point coordinates; // The coordinates of the top left corner of the current point.
 
     // Constructors of the class.
-    public SPart(){
-        /**
-         * @param none; this constructor takes no arguments upon invocation.
-         *
-         * This is the default constructor of the SPart class which instantiates the current object's attribute
-         *
-         */
+    public SPart(int x, int y) {this.colour = Settings.SNAKE_COLOUR; this.coordinates = new Point(x, y);}
 
-        this.colour = SNAKE_COLOUR;
-        this.next   = null;
-    }
+    public SPart() {this.colour = Settings.SNAKE_COLOUR;}
 
     // Getters of the class.
-    public SPart getNext() {return this.next;}
+    public int getX() {return this.coordinates.x;}
 
-    // Setters of the class.
-    public void setNext(SPart next) {this.next = next;}
+    public int getY() {return this.coordinates.y;}
 
-    // Methods of the class.
-    public void paint(Graphics2D graphics, int xCoordinates, int yCoordinates){
+    // Public non-static methods of the unit.
+    public void updateXPosition(double value) {this.coordinates.x += value;}
 
-        assert graphics != null;
+    public void updateYPosition(double value) {this.coordinates.y += value;}
 
-        graphics.setColor(SNAKE_COLOUR);
-        graphics.drawRect(xCoordinates*SPART_LENGTH, yCoordinates*SPART_LENGTH,
-                SPART_LENGTH, SPART_LENGTH);
-        graphics.fillRect(xCoordinates*SPART_LENGTH, yCoordinates*SPART_LENGTH,
-                SPART_LENGTH, SPART_LENGTH);
+    public void move(float value){
+
+
     }
+
+    // TODO: ADD THIS HERE OBSERVATION TO THE SPREADSHEET : MAKE SURE THAT THE GAME KEEPS TRACK OF MOVEMENT IN FLOATS
+    //       SO AS TO ALLOW FOR OVERALL SMOOTHER TRANSITION AND BETTER PLAYABILITY.
+
     @Override
     public String toString() {return "S";}
 

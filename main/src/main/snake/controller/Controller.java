@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.*;
 
 // Imports from custom libraries, classes and interfaces.
+import main.snake.components.Snake;
 import main.snake.graphics.Display;
 import main.snake.components.GameObjects;
 
@@ -70,7 +71,7 @@ public class Controller implements ActionListener, KeyListener{
         */
 
         // Invoke the current snake's keyPressed method and pass to it the intercepted event.
-        GameObjects.snake.keyPressed(event);
+        Snake.getSnake().keyPressed(event);
     }
 
     @Override
@@ -88,7 +89,7 @@ public class Controller implements ActionListener, KeyListener{
         */
 
         // Invoke the current snake's keyReleased method and pass to it the intercepted event.
-        GameObjects.snake.keyReleased(event);
+        Snake.getSnake().keyReleased(event);
     }
 
     @Override
@@ -104,11 +105,7 @@ public class Controller implements ActionListener, KeyListener{
         */
 
         // Paint the current state of the snake game object.
-        GameObjects.snake.paint((Graphics2D)this.currentView.getGraphics());
 
-
-        this.currentView.getGraphics().setColor(Color.white);
-        this.currentView.getGraphics().drawRect(0, 0, 32, 32);
 
         // Revalidate the View and repaint it so as to keep it updated.
         currentView.revalidate();

@@ -44,7 +44,7 @@ public class CustomButton extends JButton implements Settings {
             @Override
             public void mouseEntered(MouseEvent event){
 
-                setBackground(Color.pink);
+
                 isMouseOverButtonArea = true;
             }
 

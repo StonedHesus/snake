@@ -14,6 +14,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.IOException;
 
 public class MainMenu extends View implements Settings {
     /*
@@ -189,8 +190,12 @@ public class MainMenu extends View implements Settings {
 
         // Add the title of the game on the main menu screen.
         JLabel title = new JLabel(GAME_TITLE, SwingConstants.CENTER);
-        title.setForeground(DARK_THEME_BUTTON_FOREGROUND); // Set the foreground of the component to the one specified in the Settings interface.
+        // Set the foreground of the component to the one specified in the Settings interface.
+        title.setForeground(DARK_THEME_BUTTON_FOREGROUND);
+
         title.setFont(this.customFont);
+
+        // Add the title to the current JPanel object.
         buttonsPanel.add(title);
 
         // Add a bottom margin with the aid of the Box class.

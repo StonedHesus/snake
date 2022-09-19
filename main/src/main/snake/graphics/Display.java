@@ -10,8 +10,10 @@ import java.util.EventListener;
 
 // Imports from custom libraries, classes and interfaces.
 import main.snake.components.GameObjects;
+import main.snake.components.SPart;
 import main.snake.controller.Controller;
 import main.snake.settings.Settings;
+import main.snake.components.Snake;
 
 public class Display extends JPanel implements Settings {
     /*
@@ -63,6 +65,26 @@ public class Display extends JPanel implements Settings {
     }
 
     // Private methods of the class.
+    private void drawSnakeGameObjectInCurrentState(Graphics graphics){
+        /**
+         * @param graphics; a Graphics object, which contains the graphics for the current JPanel.
+         *
+         * This here routine is responsible for the drawing of the snake object. This operation happens once a frame.
+         *
+         * @author Andrei-Paul Ionescu.
+         */
+
+        // Set the colour of the board to SNAKE_COLOUR which is the default colour for the snake game object.
+        graphics.setColor(Settings.SNAKE_COLOUR);
+
+        for(SPart part : Snake.getSnake().getParts()) {
+
+            graphics.drawRect(part.getX(), part.getY(), Settings.SPART_LENGTH, Settings.SPART_LENGTH);
+            graphics.fillRect(part.getX(), part.getY(), Settings.SPART_LENGTH, Settings.SPART_LENGTH);
+        }
+
+    }
+
     private void updateGrowthFactor(){
         /*
          * @param none; this method takes no formal arguments upon invocation.
@@ -83,12 +105,12 @@ public class Display extends JPanel implements Settings {
         * 
         * This here method draws the background to the current JPanel's graphics, thus initialising the board. In the case of this 
         * here game, the background will remain constant and all the other game components such as the snake or the bonuses will be 
-        * juxtaposed atop of this background.
+        * superimposed on this background.
         * 
         * @author Andrei-Paul Ionescu.
         */
 
-        // Iterated thru the matrix whose size is the couple (this.width, this.height) and instantiate the blocks within the 
+        // Iterated through the matrix whose size is the couple (this.width, this.height) and instantiate the blocks within the
         // current graphics.
         for(int i = 0 ; i < this.width/this.blockLength ; ++i){
             for(int j = 0 ; j < this.height/this.blockLength ; ++j){
@@ -122,7 +144,8 @@ public class Display extends JPanel implements Settings {
         super.paintComponent(graphics); // Call the JPanel's paintComponent method and pass to it the current frame's graphics.
         this.drawBackground(graphics); // Call the drawBackground method and pass the current frame's graphics.
 
-        GameObjects.snake.paint((Graphics2D) graphics);
+
+        this.drawSnakeGameObjectInCurrentState(graphics);
 
         this.updateGrowthFactor(); // Update the growth factor after each Frame so as to ensure that the graphics are properly scaled.
 

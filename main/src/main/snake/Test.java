@@ -9,9 +9,6 @@ public class Test {
 
     public static void main(String[] args){
 
-        Snake first_test = new Snake();
-
-
-        System.out.println(first_test.toString());
+        System.out.println(Snake.getSnake().toString());
     }
 }

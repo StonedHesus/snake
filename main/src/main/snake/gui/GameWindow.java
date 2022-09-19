@@ -5,6 +5,7 @@ package main.snake.gui;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.IOException;
 
 // Imports from custom libraries, classes and interfaces.
 import main.snake.components.GameObjects;
@@ -27,7 +28,6 @@ public class GameWindow extends View implements Settings{
 
     // Constructors of the class.
     public GameWindow(){
-
         // Call the constructor of the class from which MainMenu inherits.
         super();
 
